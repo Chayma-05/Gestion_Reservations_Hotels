@@ -1,4 +1,4 @@
-package com.example.Gestion_Reservations_Hotels.Entity;
+package com.example.gestion_reservations_hotels.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +12,7 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String clientName;
-    private String roomType;
+    private int roomNumber;
     private LocalDate startDate;
     private LocalDate endDate;
 
@@ -24,8 +24,8 @@ public class Reservation {
         return clientName;
     }
 
-    public String getRoomType() {
-        return roomType;
+    public int getRoomNumber() {
+        return roomNumber;
     }
 
     public LocalDate getStartDate() {
@@ -44,8 +44,8 @@ public class Reservation {
         this.clientName = clientName;
     }
 
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
     }
 
     public void setStartDate(LocalDate startDate) {

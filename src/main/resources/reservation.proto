@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example.gestion_reservations_hotels.stubs";
+option java_outer_classname = "ReservationProto";
+
+package reservation;
+
+service ReservationService {
+  rpc GetReservation (ReservationRequest) returns (ReservationResponse) {}
+  rpc GetAllReservations (Empty) returns (ReservationsResponse) {}
+  rpc CreateReservation (CreateReservationRequest) returns (ReservationResponse) {}
+  rpc UpdateReservation (UpdateReservationRequest) returns (ReservationResponse) {}
+  rpc DeleteReservation (ReservationRequest) returns (DeleteResponse) {}
+}
+
+message Empty {}
+
+message ReservationRequest {
+  int64 id = 1;
+}
+
+message ReservationResponse {
+  int64 id = 1;
+  string client_name = 2;
+  int32 room_number = 3;
+  string start_date = 4;
+  string end_date = 5;
+}
+
+message ReservationsResponse {
+  repeated ReservationResponse reservations = 1;
+}
+
+message CreateReservationRequest {
+  string client_name = 1;
+  int32 room_number = 2;
+  string start_date = 3;
+  string end_date = 4;
+}
+
+message UpdateReservationRequest {
+  int64 id = 1;
+  string client_name = 2;
+  int32 room_number = 3;
+  string start_date = 4;
+  string end_date = 5;
+}
+
+message DeleteResponse {
+  bool success = 1;
+}

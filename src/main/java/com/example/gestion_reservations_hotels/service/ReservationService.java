@@ -1,10 +1,11 @@
-package com.example.Gestion_Reservations_Hotels.Service;
+package com.example.gestion_reservations_hotels.service;
 
-import com.example.Gestion_Reservations_Hotels.Entity.Reservation;
-import com.example.Gestion_Reservations_Hotels.Repository.ReservationRepository;
+import com.example.gestion_reservations_hotels.entity.Reservation;
+import com.example.gestion_reservations_hotels.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,10 +21,14 @@ public class ReservationService {
         return repository.findById(id);
     }
 
+    public List<Reservation> getAllReservations() {
+        return repository.findAll();
+    }
+
     public Reservation updateReservation(Long id, Reservation newReservation) {
         return repository.findById(id).map(reservation -> {
             reservation.setClientName(newReservation.getClientName());
-            reservation.setRoomType(newReservation.getRoomType());
+            reservation.setRoomNumber(newReservation.getRoomNumber());
             reservation.setStartDate(newReservation.getStartDate());
             reservation.setEndDate(newReservation.getEndDate());
             return repository.save(reservation);

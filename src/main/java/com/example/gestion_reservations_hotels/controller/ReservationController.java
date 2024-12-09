@@ -1,7 +1,7 @@
-package com.example.Gestion_Reservations_Hotels.Controller;
+package com.example.gestion_reservations_hotels.controller;
 
-import com.example.Gestion_Reservations_Hotels.Entity.Reservation;
-import com.example.Gestion_Reservations_Hotels.Service.ReservationService;
+import com.example.gestion_reservations_hotels.entity.Reservation;
+import com.example.gestion_reservations_hotels.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
