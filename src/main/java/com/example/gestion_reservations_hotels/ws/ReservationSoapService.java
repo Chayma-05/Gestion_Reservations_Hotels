@@ -1,7 +1,11 @@
 package com.example.gestion_reservations_hotels.ws;
 
+import com.example.gestion_reservations_hotels.entity.Client;
+import com.example.gestion_reservations_hotels.entity.Chambre;
 import com.example.gestion_reservations_hotels.entity.Reservation;
 import com.example.gestion_reservations_hotels.repository.ReservationRepository;
+import com.example.gestion_reservations_hotels.repository.ClientRepository;
+import com.example.gestion_reservations_hotels.repository.ChambreRepository;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
@@ -19,6 +23,12 @@ public class ReservationSoapService {
     @Autowired
     private ReservationRepository reservationRepository;
 
+    @Autowired
+    private ClientRepository clientRepository;
+
+    @Autowired
+    private ChambreRepository chambreRepository;
+
     @WebMethod
     public List<Reservation> getReservations() {
         return reservationRepository.findAll();
@@ -31,34 +41,42 @@ public class ReservationSoapService {
 
     @WebMethod
     public Reservation createReservation(
-            @WebParam(name = "clientName") String clientName,
+            @WebParam(name = "clientId") Long clientId,
             @WebParam(name = "roomNumber") int roomNumber,
-            @WebParam(name = "startDate") String startDate,
-            @WebParam(name = "endDate") String endDate) {
+            @WebParam(name = "chambreId") Long chambreId,
+            @WebParam(name = "dateDebut") String dateDebut,
+            @WebParam(name = "dateFin") String dateFin) {
 
+        Client client = clientRepository.findById(clientId).orElseThrow(() -> new RuntimeException("Client not found"));
+        Chambre chambre = chambreRepository.findById(chambreId).orElseThrow(() -> new RuntimeException("Chambre not found"));
         Reservation reservation = new Reservation();
-        reservation.setClientName(clientName);
+        reservation.setClient(client);
         reservation.setRoomNumber(roomNumber);
-        reservation.setStartDate(LocalDate.parse(startDate));
-        reservation.setEndDate(LocalDate.parse(endDate));
+        reservation.setChambre(chambre);
+        reservation.setDateDebut(LocalDate.parse(dateDebut));
+        reservation.setDateFin(LocalDate.parse(dateFin));
         return reservationRepository.save(reservation);
     }
 
     @WebMethod
     public Reservation updateReservation(
             @WebParam(name = "id") Long id,
-            @WebParam(name = "clientName") String clientName,
+            @WebParam(name = "clientId") Long clientId,
             @WebParam(name = "roomNumber") int roomNumber,
-            @WebParam(name = "startDate") String startDate,
-            @WebParam(name = "endDate") String endDate) {
+            @WebParam(name = "chambreId") Long chambreId,
+            @WebParam(name = "dateDebut") String dateDebut,
+            @WebParam(name = "dateFin") String dateFin) {
 
         Optional<Reservation> existingReservation = reservationRepository.findById(id);
         if (existingReservation.isPresent()) {
             Reservation reservation = existingReservation.get();
-            reservation.setClientName(clientName);
+            Client client = clientRepository.findById(clientId).orElseThrow(() -> new RuntimeException("Client not found"));
+            Chambre chambre = chambreRepository.findById(chambreId).orElseThrow(() -> new RuntimeException("Chambre not found"));
+            reservation.setClient(client);
             reservation.setRoomNumber(roomNumber);
-            reservation.setStartDate(LocalDate.parse(startDate));
-            reservation.setEndDate(LocalDate.parse(endDate));
+            reservation.setChambre(chambre);
+            reservation.setDateDebut(LocalDate.parse(dateDebut));
+            reservation.setDateFin(LocalDate.parse(dateFin));
             return reservationRepository.save(reservation);
         }
         return null;
@@ -71,5 +89,15 @@ public class ReservationSoapService {
             return true;
         }
         return false;
+    }
+
+    @WebMethod
+    public List<Client> getAllClients() {
+        return clientRepository.findAll();
+    }
+
+    @WebMethod
+    public List<Chambre> getAllChambres() {
+        return chambreRepository.findAll();
     }
 }

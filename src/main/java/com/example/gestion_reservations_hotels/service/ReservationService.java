@@ -27,10 +27,10 @@ public class ReservationService {
 
     public Reservation updateReservation(Long id, Reservation newReservation) {
         return repository.findById(id).map(reservation -> {
-            reservation.setClientName(newReservation.getClientName());
+            reservation.setClient(newReservation.getClient());
             reservation.setRoomNumber(newReservation.getRoomNumber());
-            reservation.setStartDate(newReservation.getStartDate());
-            reservation.setEndDate(newReservation.getEndDate());
+            reservation.setDateDebut(newReservation.getDateDebut());
+            reservation.setDateFin(newReservation.getDateFin());
             return repository.save(reservation);
         }).orElseThrow(() -> new RuntimeException("Reservation not found"));
     }

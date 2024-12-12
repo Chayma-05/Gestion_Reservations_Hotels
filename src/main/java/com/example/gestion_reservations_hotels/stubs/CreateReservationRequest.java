@@ -17,7 +17,7 @@ private static final long serialVersionUID = 0L;
   }
   private CreateReservationRequest() {
     clientName_ = "";
-    startDate_ = "";
+    dateDebut_ = "";
     endDate_ = "";
   }
 
@@ -65,7 +65,7 @@ private static final long serialVersionUID = 0L;
           case 26: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            startDate_ = s;
+            dateDebut_ = s;
             break;
           }
           case 34: {
@@ -152,36 +152,36 @@ private static final long serialVersionUID = 0L;
     return roomNumber_;
   }
 
-  public static final int START_DATE_FIELD_NUMBER = 3;
-  private volatile java.lang.Object startDate_;
+  public static final int DATE_DEBUT_FIELD_NUMBER = 3;
+  private volatile java.lang.Object dateDebut_ = "";
   /**
-   * <code>string start_date = 3;</code>
-   * @return The startDate.
+   * <code>string date_debut = 3;</code>
+   * @return The dateDebut.
    */
-  public java.lang.String getStartDate() {
-    java.lang.Object ref = startDate_;
+  public java.lang.String getDateDebut() {
+    java.lang.Object ref = dateDebut_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      startDate_ = s;
+      dateDebut_ = s;
       return s;
     }
   }
   /**
-   * <code>string start_date = 3;</code>
-   * @return The bytes for startDate.
+   * <code>string date_debut = 3;</code>
+   * @return The bytes for dateDebut.
    */
   public com.google.protobuf.ByteString
-      getStartDateBytes() {
-    java.lang.Object ref = startDate_;
+      getDateDebutBytes() {
+    java.lang.Object ref = dateDebut_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      startDate_ = b;
+      dateDebut_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -244,8 +244,8 @@ private static final long serialVersionUID = 0L;
     if (roomNumber_ != 0) {
       output.writeInt32(2, roomNumber_);
     }
-    if (!getStartDateBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, startDate_);
+    if (!getDateDebutBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, dateDebut_);
     }
     if (!getEndDateBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 4, endDate_);
@@ -266,8 +266,8 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(2, roomNumber_);
     }
-    if (!getStartDateBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, startDate_);
+    if (!getDateDebutBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, dateDebut_);
     }
     if (!getEndDateBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, endDate_);
@@ -291,8 +291,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getClientName())) return false;
     if (getRoomNumber()
         != other.getRoomNumber()) return false;
-    if (!getStartDate()
-        .equals(other.getStartDate())) return false;
+    if (!getDateDebut()
+        .equals(other.getDateDebut())) return false;
     if (!getEndDate()
         .equals(other.getEndDate())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
@@ -310,8 +310,8 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getClientName().hashCode();
     hash = (37 * hash) + ROOM_NUMBER_FIELD_NUMBER;
     hash = (53 * hash) + getRoomNumber();
-    hash = (37 * hash) + START_DATE_FIELD_NUMBER;
-    hash = (53 * hash) + getStartDate().hashCode();
+    hash = (37 * hash) + DATE_DEBUT_FIELD_NUMBER;
+    hash = (53 * hash) + getDateDebut().hashCode();
     hash = (37 * hash) + END_DATE_FIELD_NUMBER;
     hash = (53 * hash) + getEndDate().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
@@ -451,7 +451,7 @@ private static final long serialVersionUID = 0L;
 
       roomNumber_ = 0;
 
-      startDate_ = "";
+      dateDebut_ = "";
 
       endDate_ = "";
 
@@ -483,7 +483,7 @@ private static final long serialVersionUID = 0L;
       com.example.gestion_reservations_hotels.stubs.CreateReservationRequest result = new com.example.gestion_reservations_hotels.stubs.CreateReservationRequest(this);
       result.clientName_ = clientName_;
       result.roomNumber_ = roomNumber_;
-      result.startDate_ = startDate_;
+      result.dateDebut_ = dateDebut_;
       result.endDate_ = endDate_;
       onBuilt();
       return result;
@@ -540,8 +540,8 @@ private static final long serialVersionUID = 0L;
       if (other.getRoomNumber() != 0) {
         setRoomNumber(other.getRoomNumber());
       }
-      if (!other.getStartDate().isEmpty()) {
-        startDate_ = other.startDate_;
+      if (!other.getDateDebut().isEmpty()) {
+        dateDebut_ = other.dateDebut_;
         onChanged();
       }
       if (!other.getEndDate().isEmpty()) {
@@ -683,78 +683,78 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object startDate_ = "";
+    private java.lang.Object dateDebut_ = "";
     /**
-     * <code>string start_date = 3;</code>
-     * @return The startDate.
+     * <code>string date_debut = 3;</code>
+     * @return The dateDebut.
      */
-    public java.lang.String getStartDate() {
-      java.lang.Object ref = startDate_;
+    public java.lang.String getDateDebut() {
+      java.lang.Object ref = dateDebut_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        startDate_ = s;
+        dateDebut_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string start_date = 3;</code>
-     * @return The bytes for startDate.
+     * <code>string date_debut = 3;</code>
+     * @return The bytes for dateDebut.
      */
     public com.google.protobuf.ByteString
-        getStartDateBytes() {
-      java.lang.Object ref = startDate_;
+        getDateDebutBytes() {
+      java.lang.Object ref = dateDebut_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        startDate_ = b;
+        dateDebut_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string start_date = 3;</code>
-     * @param value The startDate to set.
+     * <code>string date_debut = 3;</code>
+     * @param value The dateDebut to set.
      * @return This builder for chaining.
      */
-    public Builder setStartDate(
+    public Builder setDateDebut(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      startDate_ = value;
+      dateDebut_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string start_date = 3;</code>
+     * <code>string date_debut = 3;</code>
      * @return This builder for chaining.
      */
-    public Builder clearStartDate() {
+    public Builder clearDateDebut() {
       
-      startDate_ = getDefaultInstance().getStartDate();
+      dateDebut_ = getDefaultInstance().getDateDebut();
       onChanged();
       return this;
     }
     /**
-     * <code>string start_date = 3;</code>
-     * @param value The bytes for startDate to set.
+     * <code>string date_debut = 3;</code>
+     * @param value The bytes for dateDebut to set.
      * @return This builder for chaining.
      */
-    public Builder setStartDateBytes(
+    public Builder setDateDebutBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      startDate_ = value;
+      dateDebut_ = value;
       onChanged();
       return this;
     }

@@ -1,5 +1,6 @@
 package com.example.gestion_reservations_hotels.controller;
 
+import com.example.gestion_reservations_hotels.entity.Client;
 import com.example.gestion_reservations_hotels.entity.Reservation;
 import com.example.gestion_reservations_hotels.service.ReservationService;
 import com.example.gestion_reservations_hotels.stubs.*;
@@ -24,10 +25,10 @@ public class ReservationGrpcService extends ReservationServiceGrpc.ReservationSe
 
         ReservationResponse response = ReservationResponse.newBuilder()
                 .setId(reservation.getId())
-                .setClientName(reservation.getClientName())
+                .setClientName(reservation.getClient().getNom() + " " + reservation.getClient().getPrenom())
                 .setRoomNumber(reservation.getRoomNumber())
-                .setStartDate(reservation.getStartDate().toString())
-                .setEndDate(reservation.getEndDate().toString())
+                .setStartDate(reservation.getDateDebut().toString())
+                .setEndDate(reservation.getDateFin().toString())
                 .build();
 
         responseObserver.onNext(response);
@@ -53,10 +54,12 @@ public class ReservationGrpcService extends ReservationServiceGrpc.ReservationSe
     @Override
     public void createReservation(CreateReservationRequest request, StreamObserver<ReservationResponse> responseObserver) {
         Reservation reservation = new Reservation();
-        reservation.setClientName(request.getClientName());
+        Client client = new Client();
+        client.setNom(request.getClientName());
+        reservation.setClient(client);
         reservation.setRoomNumber(request.getRoomNumber());
-        reservation.setStartDate(LocalDate.parse(request.getStartDate()));
-        reservation.setEndDate(LocalDate.parse(request.getEndDate()));
+        reservation.setDateDebut(LocalDate.parse(request.getDateDebut()));
+        reservation.setDateFin(LocalDate.parse(request.getEndDate()));
 
         Reservation saved = reservationService.createReservation(reservation);
         responseObserver.onNext(mapToResponse(saved));
@@ -66,10 +69,12 @@ public class ReservationGrpcService extends ReservationServiceGrpc.ReservationSe
     @Override
     public void updateReservation(UpdateReservationRequest request, StreamObserver<ReservationResponse> responseObserver) {
         Reservation reservation = new Reservation();
-        reservation.setClientName(request.getClientName());
+        Client client = new Client();
+        client.setNom(request.getClientName());
+        reservation.setClient(client);
         reservation.setRoomNumber(request.getRoomNumber());
-        reservation.setStartDate(LocalDate.parse(request.getStartDate()));
-        reservation.setEndDate(LocalDate.parse(request.getEndDate()));
+        reservation.setDateDebut(LocalDate.parse(request.getStartDate()));
+        reservation.setDateFin(LocalDate.parse(request.getEndDate()));
 
         Reservation updated = reservationService.updateReservation(request.getId(), reservation);
         responseObserver.onNext(mapToResponse(updated));
@@ -86,10 +91,10 @@ public class ReservationGrpcService extends ReservationServiceGrpc.ReservationSe
     private ReservationResponse mapToResponse(Reservation reservation) {
         return ReservationResponse.newBuilder()
                 .setId(reservation.getId())
-                .setClientName(reservation.getClientName())
+                .setClientName(reservation.getClient().getNom() + " " + reservation.getClient().getPrenom())
                 .setRoomNumber(reservation.getRoomNumber())
-                .setStartDate(reservation.getStartDate().toString())
-                .setEndDate(reservation.getEndDate().toString())
+                .setStartDate(reservation.getDateDebut().toString())
+                .setEndDate(reservation.getDateFin().toString())
                 .build();
     }
 }

@@ -26,16 +26,16 @@ public interface CreateReservationRequestOrBuilder extends
   int getRoomNumber();
 
   /**
-   * <code>string start_date = 3;</code>
-   * @return The startDate.
+   * <code>string date_debut = 3;</code>
+   * @return The dateDebut.
    */
-  java.lang.String getStartDate();
+  java.lang.String getDateDebut();
   /**
-   * <code>string start_date = 3;</code>
-   * @return The bytes for startDate.
+   * <code>string date_debut = 3;</code>
+   * @return The bytes for dateDebut.
    */
   com.google.protobuf.ByteString
-      getStartDateBytes();
+      getDateDebutBytes();
 
   /**
    * <code>string end_date = 4;</code>
