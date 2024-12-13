@@ -42,7 +42,6 @@ public class ReservationSoapService {
     @WebMethod
     public Reservation createReservation(
             @WebParam(name = "clientId") Long clientId,
-            @WebParam(name = "roomNumber") int roomNumber,
             @WebParam(name = "chambreId") Long chambreId,
             @WebParam(name = "dateDebut") String dateDebut,
             @WebParam(name = "dateFin") String dateFin) {
@@ -51,7 +50,6 @@ public class ReservationSoapService {
         Chambre chambre = chambreRepository.findById(chambreId).orElseThrow(() -> new RuntimeException("Chambre not found"));
         Reservation reservation = new Reservation();
         reservation.setClient(client);
-        reservation.setRoomNumber(roomNumber);
         reservation.setChambre(chambre);
         reservation.setDateDebut(LocalDate.parse(dateDebut));
         reservation.setDateFin(LocalDate.parse(dateFin));
@@ -62,7 +60,6 @@ public class ReservationSoapService {
     public Reservation updateReservation(
             @WebParam(name = "id") Long id,
             @WebParam(name = "clientId") Long clientId,
-            @WebParam(name = "roomNumber") int roomNumber,
             @WebParam(name = "chambreId") Long chambreId,
             @WebParam(name = "dateDebut") String dateDebut,
             @WebParam(name = "dateFin") String dateFin) {
@@ -73,7 +70,6 @@ public class ReservationSoapService {
             Client client = clientRepository.findById(clientId).orElseThrow(() -> new RuntimeException("Client not found"));
             Chambre chambre = chambreRepository.findById(chambreId).orElseThrow(() -> new RuntimeException("Chambre not found"));
             reservation.setClient(client);
-            reservation.setRoomNumber(roomNumber);
             reservation.setChambre(chambre);
             reservation.setDateDebut(LocalDate.parse(dateDebut));
             reservation.setDateFin(LocalDate.parse(dateFin));

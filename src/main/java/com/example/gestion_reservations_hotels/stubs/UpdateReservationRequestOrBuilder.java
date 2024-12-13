@@ -14,44 +14,50 @@ public interface UpdateReservationRequestOrBuilder extends
   long getId();
 
   /**
-   * <code>string client_name = 2;</code>
-   * @return The clientName.
+   * <code>int64 client_id = 2;</code>
+   * @return The clientId.
    */
-  java.lang.String getClientName();
-  /**
-   * <code>string client_name = 2;</code>
-   * @return The bytes for clientName.
-   */
-  com.google.protobuf.ByteString
-      getClientNameBytes();
+  long getClientId();
 
   /**
-   * <code>int32 room_number = 3;</code>
-   * @return The roomNumber.
+   * <code>int64 chambre_id = 3;</code>
+   * @return The chambreId.
    */
-  int getRoomNumber();
+  long getChambreId();
 
   /**
-   * <code>string start_date = 4;</code>
-   * @return The startDate.
+   * <code>string date_debut = 4;</code>
+   * @return The dateDebut.
    */
-  java.lang.String getStartDate();
+  java.lang.String getDateDebut();
   /**
-   * <code>string start_date = 4;</code>
-   * @return The bytes for startDate.
+   * <code>string date_debut = 4;</code>
+   * @return The bytes for dateDebut.
    */
   com.google.protobuf.ByteString
-      getStartDateBytes();
+      getDateDebutBytes();
 
   /**
-   * <code>string end_date = 5;</code>
-   * @return The endDate.
+   * <code>string date_fin = 5;</code>
+   * @return The dateFin.
    */
-  java.lang.String getEndDate();
+  java.lang.String getDateFin();
   /**
-   * <code>string end_date = 5;</code>
-   * @return The bytes for endDate.
+   * <code>string date_fin = 5;</code>
+   * @return The bytes for dateFin.
    */
   com.google.protobuf.ByteString
-      getEndDateBytes();
+      getDateFinBytes();
+
+  /**
+   * <code>string preferences = 6;</code>
+   * @return The preferences.
+   */
+  java.lang.String getPreferences();
+  /**
+   * <code>string preferences = 6;</code>
+   * @return The bytes for preferences.
+   */
+  com.google.protobuf.ByteString
+      getPreferencesBytes();
 }

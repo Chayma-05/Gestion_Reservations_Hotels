@@ -18,9 +18,7 @@ public class Reservation {
     private LocalDate dateDebut;
     private LocalDate dateFin;
     private String preferences;
-    private int roomNumber;
 
-    // Getters et Setters
     public Long getId() {
         return id;
     }
@@ -65,11 +63,5 @@ public class Reservation {
         this.preferences = preferences;
     }
 
-    public int getRoomNumber() {
-        return roomNumber;
-    }
 
-    public void setRoomNumber(int roomNumber) {
-        this.roomNumber = roomNumber;
-    }
 }

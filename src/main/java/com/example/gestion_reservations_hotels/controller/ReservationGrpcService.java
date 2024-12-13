@@ -1,8 +1,11 @@
 package com.example.gestion_reservations_hotels.controller;
 
 import com.example.gestion_reservations_hotels.entity.Client;
+import com.example.gestion_reservations_hotels.entity.Chambre;
 import com.example.gestion_reservations_hotels.entity.Reservation;
 import com.example.gestion_reservations_hotels.service.ReservationService;
+import com.example.gestion_reservations_hotels.repository.ClientRepository;
+import com.example.gestion_reservations_hotels.repository.ChambreRepository;
 import com.example.gestion_reservations_hotels.stubs.*;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
@@ -17,20 +20,19 @@ public class ReservationGrpcService extends ReservationServiceGrpc.ReservationSe
 
     @Autowired
     private ReservationService reservationService;
+    
+    @Autowired
+    private ClientRepository clientRepository;
+    
+    @Autowired
+    private ChambreRepository chambreRepository;
 
     @Override
     public void getReservation(ReservationRequest request, StreamObserver<ReservationResponse> responseObserver) {
         Reservation reservation = reservationService.getReservation(request.getId())
                 .orElseThrow(() -> new RuntimeException("Reservation not found"));
 
-        ReservationResponse response = ReservationResponse.newBuilder()
-                .setId(reservation.getId())
-                .setClientName(reservation.getClient().getNom() + " " + reservation.getClient().getPrenom())
-                .setRoomNumber(reservation.getRoomNumber())
-                .setStartDate(reservation.getDateDebut().toString())
-                .setEndDate(reservation.getDateFin().toString())
-                .build();
-
+        ReservationResponse response = mapToResponse(reservation);
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
@@ -38,28 +40,27 @@ public class ReservationGrpcService extends ReservationServiceGrpc.ReservationSe
     @Override
     public void getAllReservations(Empty request, StreamObserver<ReservationsResponse> responseObserver) {
         List<Reservation> reservations = reservationService.getAllReservations();
-
-        List<ReservationResponse> responses = reservations.stream()
-                .map(this::mapToResponse)
-                .collect(Collectors.toList());
-
         ReservationsResponse response = ReservationsResponse.newBuilder()
-                .addAllReservations(responses)
+                .addAllReservations(reservations.stream()
+                        .map(this::mapToResponse)
+                        .collect(Collectors.toList()))
                 .build();
-
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
 
     @Override
     public void createReservation(CreateReservationRequest request, StreamObserver<ReservationResponse> responseObserver) {
+        Client client = clientRepository.findById(request.getClientId())
+                .orElseThrow(() -> new RuntimeException("Client not found"));
+        Chambre chambre = chambreRepository.findById(request.getChambreId())
+                .orElseThrow(() -> new RuntimeException("Chambre not found"));
+
         Reservation reservation = new Reservation();
-        Client client = new Client();
-        client.setNom(request.getClientName());
         reservation.setClient(client);
-        reservation.setRoomNumber(request.getRoomNumber());
+        reservation.setChambre(chambre);
         reservation.setDateDebut(LocalDate.parse(request.getDateDebut()));
-        reservation.setDateFin(LocalDate.parse(request.getEndDate()));
+        reservation.setDateFin(LocalDate.parse(request.getDateFin()));
 
         Reservation saved = reservationService.createReservation(reservation);
         responseObserver.onNext(mapToResponse(saved));
@@ -68,13 +69,16 @@ public class ReservationGrpcService extends ReservationServiceGrpc.ReservationSe
 
     @Override
     public void updateReservation(UpdateReservationRequest request, StreamObserver<ReservationResponse> responseObserver) {
+        Client client = clientRepository.findById(request.getClientId())
+                .orElseThrow(() -> new RuntimeException("Client not found"));
+        Chambre chambre = chambreRepository.findById(request.getChambreId())
+                .orElseThrow(() -> new RuntimeException("Chambre not found"));
+
         Reservation reservation = new Reservation();
-        Client client = new Client();
-        client.setNom(request.getClientName());
         reservation.setClient(client);
-        reservation.setRoomNumber(request.getRoomNumber());
-        reservation.setDateDebut(LocalDate.parse(request.getStartDate()));
-        reservation.setDateFin(LocalDate.parse(request.getEndDate()));
+        reservation.setChambre(chambre);
+        reservation.setDateDebut(LocalDate.parse(request.getDateDebut()));
+        reservation.setDateFin(LocalDate.parse(request.getDateFin()));
 
         Reservation updated = reservationService.updateReservation(request.getId(), reservation);
         responseObserver.onNext(mapToResponse(updated));
@@ -91,10 +95,21 @@ public class ReservationGrpcService extends ReservationServiceGrpc.ReservationSe
     private ReservationResponse mapToResponse(Reservation reservation) {
         return ReservationResponse.newBuilder()
                 .setId(reservation.getId())
-                .setClientName(reservation.getClient().getNom() + " " + reservation.getClient().getPrenom())
-                .setRoomNumber(reservation.getRoomNumber())
-                .setStartDate(reservation.getDateDebut().toString())
-                .setEndDate(reservation.getDateFin().toString())
+                .setClient(com.example.gestion_reservations_hotels.stubs.Client.newBuilder()
+                        .setId(reservation.getClient().getId())
+                        .setNom(reservation.getClient().getNom())
+                        .setPrenom(reservation.getClient().getPrenom())
+                        .setEmail(reservation.getClient().getEmail())
+                        .setTelephone(reservation.getClient().getTelephone())
+                        .build())
+                .setChambre(com.example.gestion_reservations_hotels.stubs.Chambre.newBuilder()
+                        .setId(reservation.getChambre().getId())
+                        .setTypeChambre(reservation.getChambre().getType().toString())
+                        .setPrix(reservation.getChambre().getPrix())
+                        .setDisponible(reservation.getChambre().isDisponible())
+                        .build())
+                .setDateDebut(reservation.getDateDebut().toString())
+                .setDateFin(reservation.getDateFin().toString())
                 .build();
     }
 }

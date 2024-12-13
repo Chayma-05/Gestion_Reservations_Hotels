@@ -25,6 +25,17 @@ public class ReservationController {
 
     @PostMapping
     public Reservation createReservation(@RequestBody Reservation reservation) {
+        // Sauvegarder d'abord le client
+        Client client = clientRepository.save(reservation.getClient());
+        
+        // Sauvegarder ensuite la chambre
+        Chambre chambre = chambreRepository.save(reservation.getChambre());
+        
+        // Mettre à jour la réservation avec les entités sauvegardées
+        reservation.setClient(client);
+        reservation.setChambre(chambre);
+        
+        // Sauvegarder et retourner la réservation
         return reservationService.createReservation(reservation);
     }
 

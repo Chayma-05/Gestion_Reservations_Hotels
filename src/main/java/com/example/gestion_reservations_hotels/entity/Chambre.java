@@ -19,7 +19,6 @@ public class Chambre {
     private double prix;
     private boolean disponible;
 
-    // Getters et Setters
     public Long getId() {
         return id;
     }

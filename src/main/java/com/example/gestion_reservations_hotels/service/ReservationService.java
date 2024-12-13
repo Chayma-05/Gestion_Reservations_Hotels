@@ -28,7 +28,7 @@ public class ReservationService {
     public Reservation updateReservation(Long id, Reservation newReservation) {
         return repository.findById(id).map(reservation -> {
             reservation.setClient(newReservation.getClient());
-            reservation.setRoomNumber(newReservation.getRoomNumber());
+            reservation.setChambre(newReservation.getChambre());
             reservation.setDateDebut(newReservation.getDateDebut());
             reservation.setDateFin(newReservation.getDateFin());
             return repository.save(reservation);

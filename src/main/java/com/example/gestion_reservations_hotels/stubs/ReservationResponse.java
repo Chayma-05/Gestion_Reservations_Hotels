@@ -16,9 +16,9 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private ReservationResponse() {
-    clientName_ = "";
-    startDate_ = "";
-    endDate_ = "";
+    dateDebut_ = "";
+    dateFin_ = "";
+    preferences_ = "";
   }
 
   @java.lang.Override
@@ -57,26 +57,47 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
+            com.example.gestion_reservations_hotels.stubs.Client.Builder subBuilder = null;
+            if (client_ != null) {
+              subBuilder = client_.toBuilder();
+            }
+            client_ = input.readMessage(com.example.gestion_reservations_hotels.stubs.Client.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(client_);
+              client_ = subBuilder.buildPartial();
+            }
 
-            clientName_ = s;
             break;
           }
-          case 24: {
+          case 26: {
+            com.example.gestion_reservations_hotels.stubs.Chambre.Builder subBuilder = null;
+            if (chambre_ != null) {
+              subBuilder = chambre_.toBuilder();
+            }
+            chambre_ = input.readMessage(com.example.gestion_reservations_hotels.stubs.Chambre.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(chambre_);
+              chambre_ = subBuilder.buildPartial();
+            }
 
-            roomNumber_ = input.readInt32();
             break;
           }
           case 34: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            startDate_ = s;
+            dateDebut_ = s;
             break;
           }
           case 42: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            endDate_ = s;
+            dateFin_ = s;
+            break;
+          }
+          case 50: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            preferences_ = s;
             break;
           }
           default: {
@@ -121,118 +142,154 @@ private static final long serialVersionUID = 0L;
     return id_;
   }
 
-  public static final int CLIENT_NAME_FIELD_NUMBER = 2;
-  private volatile java.lang.Object clientName_;
+  public static final int CLIENT_FIELD_NUMBER = 2;
+  private com.example.gestion_reservations_hotels.stubs.Client client_;
   /**
-   * <code>string client_name = 2;</code>
-   * @return The clientName.
+   * <code>.reservation.Client client = 2;</code>
+   * @return Whether the client field is set.
    */
-  public java.lang.String getClientName() {
-    java.lang.Object ref = clientName_;
+  public boolean hasClient() {
+    return client_ != null;
+  }
+  /**
+   * <code>.reservation.Client client = 2;</code>
+   * @return The client.
+   */
+  public com.example.gestion_reservations_hotels.stubs.Client getClient() {
+    return client_ == null ? com.example.gestion_reservations_hotels.stubs.Client.getDefaultInstance() : client_;
+  }
+  /**
+   * <code>.reservation.Client client = 2;</code>
+   */
+  public com.example.gestion_reservations_hotels.stubs.ClientOrBuilder getClientOrBuilder() {
+    return getClient();
+  }
+
+  public static final int CHAMBRE_FIELD_NUMBER = 3;
+  private com.example.gestion_reservations_hotels.stubs.Chambre chambre_;
+  /**
+   * <code>.reservation.Chambre chambre = 3;</code>
+   * @return Whether the chambre field is set.
+   */
+  public boolean hasChambre() {
+    return chambre_ != null;
+  }
+  /**
+   * <code>.reservation.Chambre chambre = 3;</code>
+   * @return The chambre.
+   */
+  public com.example.gestion_reservations_hotels.stubs.Chambre getChambre() {
+    return chambre_ == null ? com.example.gestion_reservations_hotels.stubs.Chambre.getDefaultInstance() : chambre_;
+  }
+  /**
+   * <code>.reservation.Chambre chambre = 3;</code>
+   */
+  public com.example.gestion_reservations_hotels.stubs.ChambreOrBuilder getChambreOrBuilder() {
+    return getChambre();
+  }
+
+  public static final int DATE_DEBUT_FIELD_NUMBER = 4;
+  private volatile java.lang.Object dateDebut_;
+  /**
+   * <code>string date_debut = 4;</code>
+   * @return The dateDebut.
+   */
+  public java.lang.String getDateDebut() {
+    java.lang.Object ref = dateDebut_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      clientName_ = s;
+      dateDebut_ = s;
       return s;
     }
   }
   /**
-   * <code>string client_name = 2;</code>
-   * @return The bytes for clientName.
+   * <code>string date_debut = 4;</code>
+   * @return The bytes for dateDebut.
    */
   public com.google.protobuf.ByteString
-      getClientNameBytes() {
-    java.lang.Object ref = clientName_;
+      getDateDebutBytes() {
+    java.lang.Object ref = dateDebut_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      clientName_ = b;
+      dateDebut_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
   }
 
-  public static final int ROOM_NUMBER_FIELD_NUMBER = 3;
-  private int roomNumber_;
+  public static final int DATE_FIN_FIELD_NUMBER = 5;
+  private volatile java.lang.Object dateFin_;
   /**
-   * <code>int32 room_number = 3;</code>
-   * @return The roomNumber.
+   * <code>string date_fin = 5;</code>
+   * @return The dateFin.
    */
-  public int getRoomNumber() {
-    return roomNumber_;
-  }
-
-  public static final int START_DATE_FIELD_NUMBER = 4;
-  private volatile java.lang.Object startDate_;
-  /**
-   * <code>string start_date = 4;</code>
-   * @return The startDate.
-   */
-  public java.lang.String getStartDate() {
-    java.lang.Object ref = startDate_;
+  public java.lang.String getDateFin() {
+    java.lang.Object ref = dateFin_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      startDate_ = s;
+      dateFin_ = s;
       return s;
     }
   }
   /**
-   * <code>string start_date = 4;</code>
-   * @return The bytes for startDate.
+   * <code>string date_fin = 5;</code>
+   * @return The bytes for dateFin.
    */
   public com.google.protobuf.ByteString
-      getStartDateBytes() {
-    java.lang.Object ref = startDate_;
+      getDateFinBytes() {
+    java.lang.Object ref = dateFin_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      startDate_ = b;
+      dateFin_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
   }
 
-  public static final int END_DATE_FIELD_NUMBER = 5;
-  private volatile java.lang.Object endDate_;
+  public static final int PREFERENCES_FIELD_NUMBER = 6;
+  private volatile java.lang.Object preferences_;
   /**
-   * <code>string end_date = 5;</code>
-   * @return The endDate.
+   * <code>string preferences = 6;</code>
+   * @return The preferences.
    */
-  public java.lang.String getEndDate() {
-    java.lang.Object ref = endDate_;
+  public java.lang.String getPreferences() {
+    java.lang.Object ref = preferences_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      endDate_ = s;
+      preferences_ = s;
       return s;
     }
   }
   /**
-   * <code>string end_date = 5;</code>
-   * @return The bytes for endDate.
+   * <code>string preferences = 6;</code>
+   * @return The bytes for preferences.
    */
   public com.google.protobuf.ByteString
-      getEndDateBytes() {
-    java.lang.Object ref = endDate_;
+      getPreferencesBytes() {
+    java.lang.Object ref = preferences_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      endDate_ = b;
+      preferences_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -256,17 +313,20 @@ private static final long serialVersionUID = 0L;
     if (id_ != 0L) {
       output.writeInt64(1, id_);
     }
-    if (!getClientNameBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, clientName_);
+    if (client_ != null) {
+      output.writeMessage(2, getClient());
     }
-    if (roomNumber_ != 0) {
-      output.writeInt32(3, roomNumber_);
+    if (chambre_ != null) {
+      output.writeMessage(3, getChambre());
     }
-    if (!getStartDateBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, startDate_);
+    if (!getDateDebutBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, dateDebut_);
     }
-    if (!getEndDateBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 5, endDate_);
+    if (!getDateFinBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 5, dateFin_);
+    }
+    if (!getPreferencesBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 6, preferences_);
     }
     unknownFields.writeTo(output);
   }
@@ -281,18 +341,22 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt64Size(1, id_);
     }
-    if (!getClientNameBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, clientName_);
-    }
-    if (roomNumber_ != 0) {
+    if (client_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(3, roomNumber_);
+        .computeMessageSize(2, getClient());
     }
-    if (!getStartDateBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, startDate_);
+    if (chambre_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(3, getChambre());
     }
-    if (!getEndDateBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, endDate_);
+    if (!getDateDebutBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, dateDebut_);
+    }
+    if (!getDateFinBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, dateFin_);
+    }
+    if (!getPreferencesBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, preferences_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -311,14 +375,22 @@ private static final long serialVersionUID = 0L;
 
     if (getId()
         != other.getId()) return false;
-    if (!getClientName()
-        .equals(other.getClientName())) return false;
-    if (getRoomNumber()
-        != other.getRoomNumber()) return false;
-    if (!getStartDate()
-        .equals(other.getStartDate())) return false;
-    if (!getEndDate()
-        .equals(other.getEndDate())) return false;
+    if (hasClient() != other.hasClient()) return false;
+    if (hasClient()) {
+      if (!getClient()
+          .equals(other.getClient())) return false;
+    }
+    if (hasChambre() != other.hasChambre()) return false;
+    if (hasChambre()) {
+      if (!getChambre()
+          .equals(other.getChambre())) return false;
+    }
+    if (!getDateDebut()
+        .equals(other.getDateDebut())) return false;
+    if (!getDateFin()
+        .equals(other.getDateFin())) return false;
+    if (!getPreferences()
+        .equals(other.getPreferences())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -333,14 +405,20 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + ID_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getId());
-    hash = (37 * hash) + CLIENT_NAME_FIELD_NUMBER;
-    hash = (53 * hash) + getClientName().hashCode();
-    hash = (37 * hash) + ROOM_NUMBER_FIELD_NUMBER;
-    hash = (53 * hash) + getRoomNumber();
-    hash = (37 * hash) + START_DATE_FIELD_NUMBER;
-    hash = (53 * hash) + getStartDate().hashCode();
-    hash = (37 * hash) + END_DATE_FIELD_NUMBER;
-    hash = (53 * hash) + getEndDate().hashCode();
+    if (hasClient()) {
+      hash = (37 * hash) + CLIENT_FIELD_NUMBER;
+      hash = (53 * hash) + getClient().hashCode();
+    }
+    if (hasChambre()) {
+      hash = (37 * hash) + CHAMBRE_FIELD_NUMBER;
+      hash = (53 * hash) + getChambre().hashCode();
+    }
+    hash = (37 * hash) + DATE_DEBUT_FIELD_NUMBER;
+    hash = (53 * hash) + getDateDebut().hashCode();
+    hash = (37 * hash) + DATE_FIN_FIELD_NUMBER;
+    hash = (53 * hash) + getDateFin().hashCode();
+    hash = (37 * hash) + PREFERENCES_FIELD_NUMBER;
+    hash = (53 * hash) + getPreferences().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -476,13 +554,23 @@ private static final long serialVersionUID = 0L;
       super.clear();
       id_ = 0L;
 
-      clientName_ = "";
+      if (clientBuilder_ == null) {
+        client_ = null;
+      } else {
+        client_ = null;
+        clientBuilder_ = null;
+      }
+      if (chambreBuilder_ == null) {
+        chambre_ = null;
+      } else {
+        chambre_ = null;
+        chambreBuilder_ = null;
+      }
+      dateDebut_ = "";
 
-      roomNumber_ = 0;
+      dateFin_ = "";
 
-      startDate_ = "";
-
-      endDate_ = "";
+      preferences_ = "";
 
       return this;
     }
@@ -511,10 +599,19 @@ private static final long serialVersionUID = 0L;
     public com.example.gestion_reservations_hotels.stubs.ReservationResponse buildPartial() {
       com.example.gestion_reservations_hotels.stubs.ReservationResponse result = new com.example.gestion_reservations_hotels.stubs.ReservationResponse(this);
       result.id_ = id_;
-      result.clientName_ = clientName_;
-      result.roomNumber_ = roomNumber_;
-      result.startDate_ = startDate_;
-      result.endDate_ = endDate_;
+      if (clientBuilder_ == null) {
+        result.client_ = client_;
+      } else {
+        result.client_ = clientBuilder_.build();
+      }
+      if (chambreBuilder_ == null) {
+        result.chambre_ = chambre_;
+      } else {
+        result.chambre_ = chambreBuilder_.build();
+      }
+      result.dateDebut_ = dateDebut_;
+      result.dateFin_ = dateFin_;
+      result.preferences_ = preferences_;
       onBuilt();
       return result;
     }
@@ -566,19 +663,22 @@ private static final long serialVersionUID = 0L;
       if (other.getId() != 0L) {
         setId(other.getId());
       }
-      if (!other.getClientName().isEmpty()) {
-        clientName_ = other.clientName_;
+      if (other.hasClient()) {
+        mergeClient(other.getClient());
+      }
+      if (other.hasChambre()) {
+        mergeChambre(other.getChambre());
+      }
+      if (!other.getDateDebut().isEmpty()) {
+        dateDebut_ = other.dateDebut_;
         onChanged();
       }
-      if (other.getRoomNumber() != 0) {
-        setRoomNumber(other.getRoomNumber());
-      }
-      if (!other.getStartDate().isEmpty()) {
-        startDate_ = other.startDate_;
+      if (!other.getDateFin().isEmpty()) {
+        dateFin_ = other.dateFin_;
         onChanged();
       }
-      if (!other.getEndDate().isEmpty()) {
-        endDate_ = other.endDate_;
+      if (!other.getPreferences().isEmpty()) {
+        preferences_ = other.preferences_;
         onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -640,260 +740,468 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object clientName_ = "";
+    private com.example.gestion_reservations_hotels.stubs.Client client_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.example.gestion_reservations_hotels.stubs.Client, com.example.gestion_reservations_hotels.stubs.Client.Builder, com.example.gestion_reservations_hotels.stubs.ClientOrBuilder> clientBuilder_;
     /**
-     * <code>string client_name = 2;</code>
-     * @return The clientName.
+     * <code>.reservation.Client client = 2;</code>
+     * @return Whether the client field is set.
      */
-    public java.lang.String getClientName() {
-      java.lang.Object ref = clientName_;
+    public boolean hasClient() {
+      return clientBuilder_ != null || client_ != null;
+    }
+    /**
+     * <code>.reservation.Client client = 2;</code>
+     * @return The client.
+     */
+    public com.example.gestion_reservations_hotels.stubs.Client getClient() {
+      if (clientBuilder_ == null) {
+        return client_ == null ? com.example.gestion_reservations_hotels.stubs.Client.getDefaultInstance() : client_;
+      } else {
+        return clientBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.reservation.Client client = 2;</code>
+     */
+    public Builder setClient(com.example.gestion_reservations_hotels.stubs.Client value) {
+      if (clientBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        client_ = value;
+        onChanged();
+      } else {
+        clientBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.reservation.Client client = 2;</code>
+     */
+    public Builder setClient(
+        com.example.gestion_reservations_hotels.stubs.Client.Builder builderForValue) {
+      if (clientBuilder_ == null) {
+        client_ = builderForValue.build();
+        onChanged();
+      } else {
+        clientBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.reservation.Client client = 2;</code>
+     */
+    public Builder mergeClient(com.example.gestion_reservations_hotels.stubs.Client value) {
+      if (clientBuilder_ == null) {
+        if (client_ != null) {
+          client_ =
+            com.example.gestion_reservations_hotels.stubs.Client.newBuilder(client_).mergeFrom(value).buildPartial();
+        } else {
+          client_ = value;
+        }
+        onChanged();
+      } else {
+        clientBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.reservation.Client client = 2;</code>
+     */
+    public Builder clearClient() {
+      if (clientBuilder_ == null) {
+        client_ = null;
+        onChanged();
+      } else {
+        client_ = null;
+        clientBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.reservation.Client client = 2;</code>
+     */
+    public com.example.gestion_reservations_hotels.stubs.Client.Builder getClientBuilder() {
+      
+      onChanged();
+      return getClientFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.reservation.Client client = 2;</code>
+     */
+    public com.example.gestion_reservations_hotels.stubs.ClientOrBuilder getClientOrBuilder() {
+      if (clientBuilder_ != null) {
+        return clientBuilder_.getMessageOrBuilder();
+      } else {
+        return client_ == null ?
+            com.example.gestion_reservations_hotels.stubs.Client.getDefaultInstance() : client_;
+      }
+    }
+    /**
+     * <code>.reservation.Client client = 2;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.example.gestion_reservations_hotels.stubs.Client, com.example.gestion_reservations_hotels.stubs.Client.Builder, com.example.gestion_reservations_hotels.stubs.ClientOrBuilder> 
+        getClientFieldBuilder() {
+      if (clientBuilder_ == null) {
+        clientBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.example.gestion_reservations_hotels.stubs.Client, com.example.gestion_reservations_hotels.stubs.Client.Builder, com.example.gestion_reservations_hotels.stubs.ClientOrBuilder>(
+                getClient(),
+                getParentForChildren(),
+                isClean());
+        client_ = null;
+      }
+      return clientBuilder_;
+    }
+
+    private com.example.gestion_reservations_hotels.stubs.Chambre chambre_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.example.gestion_reservations_hotels.stubs.Chambre, com.example.gestion_reservations_hotels.stubs.Chambre.Builder, com.example.gestion_reservations_hotels.stubs.ChambreOrBuilder> chambreBuilder_;
+    /**
+     * <code>.reservation.Chambre chambre = 3;</code>
+     * @return Whether the chambre field is set.
+     */
+    public boolean hasChambre() {
+      return chambreBuilder_ != null || chambre_ != null;
+    }
+    /**
+     * <code>.reservation.Chambre chambre = 3;</code>
+     * @return The chambre.
+     */
+    public com.example.gestion_reservations_hotels.stubs.Chambre getChambre() {
+      if (chambreBuilder_ == null) {
+        return chambre_ == null ? com.example.gestion_reservations_hotels.stubs.Chambre.getDefaultInstance() : chambre_;
+      } else {
+        return chambreBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.reservation.Chambre chambre = 3;</code>
+     */
+    public Builder setChambre(com.example.gestion_reservations_hotels.stubs.Chambre value) {
+      if (chambreBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        chambre_ = value;
+        onChanged();
+      } else {
+        chambreBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.reservation.Chambre chambre = 3;</code>
+     */
+    public Builder setChambre(
+        com.example.gestion_reservations_hotels.stubs.Chambre.Builder builderForValue) {
+      if (chambreBuilder_ == null) {
+        chambre_ = builderForValue.build();
+        onChanged();
+      } else {
+        chambreBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.reservation.Chambre chambre = 3;</code>
+     */
+    public Builder mergeChambre(com.example.gestion_reservations_hotels.stubs.Chambre value) {
+      if (chambreBuilder_ == null) {
+        if (chambre_ != null) {
+          chambre_ =
+            com.example.gestion_reservations_hotels.stubs.Chambre.newBuilder(chambre_).mergeFrom(value).buildPartial();
+        } else {
+          chambre_ = value;
+        }
+        onChanged();
+      } else {
+        chambreBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.reservation.Chambre chambre = 3;</code>
+     */
+    public Builder clearChambre() {
+      if (chambreBuilder_ == null) {
+        chambre_ = null;
+        onChanged();
+      } else {
+        chambre_ = null;
+        chambreBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.reservation.Chambre chambre = 3;</code>
+     */
+    public com.example.gestion_reservations_hotels.stubs.Chambre.Builder getChambreBuilder() {
+      
+      onChanged();
+      return getChambreFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.reservation.Chambre chambre = 3;</code>
+     */
+    public com.example.gestion_reservations_hotels.stubs.ChambreOrBuilder getChambreOrBuilder() {
+      if (chambreBuilder_ != null) {
+        return chambreBuilder_.getMessageOrBuilder();
+      } else {
+        return chambre_ == null ?
+            com.example.gestion_reservations_hotels.stubs.Chambre.getDefaultInstance() : chambre_;
+      }
+    }
+    /**
+     * <code>.reservation.Chambre chambre = 3;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.example.gestion_reservations_hotels.stubs.Chambre, com.example.gestion_reservations_hotels.stubs.Chambre.Builder, com.example.gestion_reservations_hotels.stubs.ChambreOrBuilder> 
+        getChambreFieldBuilder() {
+      if (chambreBuilder_ == null) {
+        chambreBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.example.gestion_reservations_hotels.stubs.Chambre, com.example.gestion_reservations_hotels.stubs.Chambre.Builder, com.example.gestion_reservations_hotels.stubs.ChambreOrBuilder>(
+                getChambre(),
+                getParentForChildren(),
+                isClean());
+        chambre_ = null;
+      }
+      return chambreBuilder_;
+    }
+
+    private java.lang.Object dateDebut_ = "";
+    /**
+     * <code>string date_debut = 4;</code>
+     * @return The dateDebut.
+     */
+    public java.lang.String getDateDebut() {
+      java.lang.Object ref = dateDebut_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        clientName_ = s;
+        dateDebut_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string client_name = 2;</code>
-     * @return The bytes for clientName.
+     * <code>string date_debut = 4;</code>
+     * @return The bytes for dateDebut.
      */
     public com.google.protobuf.ByteString
-        getClientNameBytes() {
-      java.lang.Object ref = clientName_;
+        getDateDebutBytes() {
+      java.lang.Object ref = dateDebut_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        clientName_ = b;
+        dateDebut_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string client_name = 2;</code>
-     * @param value The clientName to set.
+     * <code>string date_debut = 4;</code>
+     * @param value The dateDebut to set.
      * @return This builder for chaining.
      */
-    public Builder setClientName(
+    public Builder setDateDebut(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      clientName_ = value;
+      dateDebut_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string client_name = 2;</code>
+     * <code>string date_debut = 4;</code>
      * @return This builder for chaining.
      */
-    public Builder clearClientName() {
+    public Builder clearDateDebut() {
       
-      clientName_ = getDefaultInstance().getClientName();
+      dateDebut_ = getDefaultInstance().getDateDebut();
       onChanged();
       return this;
     }
     /**
-     * <code>string client_name = 2;</code>
-     * @param value The bytes for clientName to set.
+     * <code>string date_debut = 4;</code>
+     * @param value The bytes for dateDebut to set.
      * @return This builder for chaining.
      */
-    public Builder setClientNameBytes(
+    public Builder setDateDebutBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      clientName_ = value;
+      dateDebut_ = value;
       onChanged();
       return this;
     }
 
-    private int roomNumber_ ;
+    private java.lang.Object dateFin_ = "";
     /**
-     * <code>int32 room_number = 3;</code>
-     * @return The roomNumber.
+     * <code>string date_fin = 5;</code>
+     * @return The dateFin.
      */
-    public int getRoomNumber() {
-      return roomNumber_;
-    }
-    /**
-     * <code>int32 room_number = 3;</code>
-     * @param value The roomNumber to set.
-     * @return This builder for chaining.
-     */
-    public Builder setRoomNumber(int value) {
-      
-      roomNumber_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>int32 room_number = 3;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearRoomNumber() {
-      
-      roomNumber_ = 0;
-      onChanged();
-      return this;
-    }
-
-    private java.lang.Object startDate_ = "";
-    /**
-     * <code>string start_date = 4;</code>
-     * @return The startDate.
-     */
-    public java.lang.String getStartDate() {
-      java.lang.Object ref = startDate_;
+    public java.lang.String getDateFin() {
+      java.lang.Object ref = dateFin_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        startDate_ = s;
+        dateFin_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string start_date = 4;</code>
-     * @return The bytes for startDate.
+     * <code>string date_fin = 5;</code>
+     * @return The bytes for dateFin.
      */
     public com.google.protobuf.ByteString
-        getStartDateBytes() {
-      java.lang.Object ref = startDate_;
+        getDateFinBytes() {
+      java.lang.Object ref = dateFin_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        startDate_ = b;
+        dateFin_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string start_date = 4;</code>
-     * @param value The startDate to set.
+     * <code>string date_fin = 5;</code>
+     * @param value The dateFin to set.
      * @return This builder for chaining.
      */
-    public Builder setStartDate(
+    public Builder setDateFin(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      startDate_ = value;
+      dateFin_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string start_date = 4;</code>
+     * <code>string date_fin = 5;</code>
      * @return This builder for chaining.
      */
-    public Builder clearStartDate() {
+    public Builder clearDateFin() {
       
-      startDate_ = getDefaultInstance().getStartDate();
+      dateFin_ = getDefaultInstance().getDateFin();
       onChanged();
       return this;
     }
     /**
-     * <code>string start_date = 4;</code>
-     * @param value The bytes for startDate to set.
+     * <code>string date_fin = 5;</code>
+     * @param value The bytes for dateFin to set.
      * @return This builder for chaining.
      */
-    public Builder setStartDateBytes(
+    public Builder setDateFinBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      startDate_ = value;
+      dateFin_ = value;
       onChanged();
       return this;
     }
 
-    private java.lang.Object endDate_ = "";
+    private java.lang.Object preferences_ = "";
     /**
-     * <code>string end_date = 5;</code>
-     * @return The endDate.
+     * <code>string preferences = 6;</code>
+     * @return The preferences.
      */
-    public java.lang.String getEndDate() {
-      java.lang.Object ref = endDate_;
+    public java.lang.String getPreferences() {
+      java.lang.Object ref = preferences_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        endDate_ = s;
+        preferences_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string end_date = 5;</code>
-     * @return The bytes for endDate.
+     * <code>string preferences = 6;</code>
+     * @return The bytes for preferences.
      */
     public com.google.protobuf.ByteString
-        getEndDateBytes() {
-      java.lang.Object ref = endDate_;
+        getPreferencesBytes() {
+      java.lang.Object ref = preferences_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        endDate_ = b;
+        preferences_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string end_date = 5;</code>
-     * @param value The endDate to set.
+     * <code>string preferences = 6;</code>
+     * @param value The preferences to set.
      * @return This builder for chaining.
      */
-    public Builder setEndDate(
+    public Builder setPreferences(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      endDate_ = value;
+      preferences_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string end_date = 5;</code>
+     * <code>string preferences = 6;</code>
      * @return This builder for chaining.
      */
-    public Builder clearEndDate() {
+    public Builder clearPreferences() {
       
-      endDate_ = getDefaultInstance().getEndDate();
+      preferences_ = getDefaultInstance().getPreferences();
       onChanged();
       return this;
     }
     /**
-     * <code>string end_date = 5;</code>
-     * @param value The bytes for endDate to set.
+     * <code>string preferences = 6;</code>
+     * @param value The bytes for preferences to set.
      * @return This builder for chaining.
      */
-    public Builder setEndDateBytes(
+    public Builder setPreferencesBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      endDate_ = value;
+      preferences_ = value;
       onChanged();
       return this;
     }

@@ -8,22 +8,16 @@ public interface CreateReservationRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string client_name = 1;</code>
-   * @return The clientName.
+   * <code>int64 client_id = 1;</code>
+   * @return The clientId.
    */
-  java.lang.String getClientName();
-  /**
-   * <code>string client_name = 1;</code>
-   * @return The bytes for clientName.
-   */
-  com.google.protobuf.ByteString
-      getClientNameBytes();
+  long getClientId();
 
   /**
-   * <code>int32 room_number = 2;</code>
-   * @return The roomNumber.
+   * <code>int64 chambre_id = 2;</code>
+   * @return The chambreId.
    */
-  int getRoomNumber();
+  long getChambreId();
 
   /**
    * <code>string date_debut = 3;</code>
@@ -38,14 +32,26 @@ public interface CreateReservationRequestOrBuilder extends
       getDateDebutBytes();
 
   /**
-   * <code>string end_date = 4;</code>
-   * @return The endDate.
+   * <code>string date_fin = 4;</code>
+   * @return The dateFin.
    */
-  java.lang.String getEndDate();
+  java.lang.String getDateFin();
   /**
-   * <code>string end_date = 4;</code>
-   * @return The bytes for endDate.
+   * <code>string date_fin = 4;</code>
+   * @return The bytes for dateFin.
    */
   com.google.protobuf.ByteString
-      getEndDateBytes();
+      getDateFinBytes();
+
+  /**
+   * <code>string preferences = 5;</code>
+   * @return The preferences.
+   */
+  java.lang.String getPreferences();
+  /**
+   * <code>string preferences = 5;</code>
+   * @return The bytes for preferences.
+   */
+  com.google.protobuf.ByteString
+      getPreferencesBytes();
 }
