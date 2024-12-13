@@ -1,16 +1,14 @@
-type Client {
-    id: ID!
-    nom: String!
-    prenom: String!
-    email: String!
-    telephone: String!
+type Query {
+    getReservation(id: ID!): Reservation
+    getAllReservations: [Reservation]
+    getAllClients: [Client]
+    getAllChambres: [Chambre]
 }
 
-type Chambre {
-    id: ID!
-    typeChambre: String!
-    prix: Float!
-    disponible: Boolean!
+type Mutation {
+    createReservation(input: ReservationInput!): Reservation
+    updateReservation(id: ID!, input: ReservationInput!): Reservation
+    deleteReservation(id: ID!): Boolean
 }
 
 type Reservation {
@@ -22,40 +20,30 @@ type Reservation {
     preferences: String
 }
 
-input ClientInput {
-    id: ID
-    nom: String
-    prenom: String
-    email: String
-    telephone: String
+type Client {
+    id: ID!
+    nom: String!
+    prenom: String!
+    email: String!
+    telephone: String!
 }
 
-input ChambreInput {
-    id: ID
-    typeChambre: String
-    prix: Float
-    disponible: Boolean
+type Chambre {
+    id: ID!
+    typeChambre: TypeChambre!
+    prix: Float!
+    disponible: Boolean!
+}
+
+enum TypeChambre {
+    SIMPLE
+    DOUBLE
 }
 
 input ReservationInput {
-    clientId: ID
-    chambreId: ID
-    client: ClientInput
-    chambre: ChambreInput
+    clientId: ID!
+    chambreId: ID!
     dateDebut: String!
     dateFin: String!
     preferences: String
-}
-
-type Query {
-    getReservation(id: ID!): Reservation
-    getAllReservations: [Reservation]!
-    getAllClients: [Client]!
-    getAllChambres: [Chambre]!
-}
-
-type Mutation {
-    createReservation(reservation: ReservationInput!): Reservation!
-    updateReservation(id: ID!, reservation: ReservationInput!): Reservation!
-    deleteReservation(id: ID!): Boolean!
 }

@@ -6,8 +6,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.EnumType;
+import lombok.*;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Chambre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

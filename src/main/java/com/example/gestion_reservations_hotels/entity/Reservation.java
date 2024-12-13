@@ -1,9 +1,16 @@
 package com.example.gestion_reservations_hotels.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +22,9 @@ public class Reservation {
     @ManyToOne
     private Chambre chambre;
 
+    @Temporal(TemporalType.DATE)
     private LocalDate dateDebut;
+    @Temporal(TemporalType.DATE)
     private LocalDate dateFin;
     private String preferences;
 
